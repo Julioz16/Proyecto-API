@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Namekusei</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+    <img class="titulo" src="{{ url_for('static', filename='img/titulo1.png') }}">
+
+    <img class="goku" id="image1" src="/static/img1.png" alt="Imagen inicial">
+
+    <img class="freezer" id="image2" src="/static/img11.png" alt="Imagen inicial2">
+    
+    <img onclick="changeImage1()" class="botonGoku" src="{{ url_for('static', filename='img/Transformargoku.png') }}">
+
+    <img onclick="changeImage2()" class="botonFreezer" src="{{ url_for('static', filename='img/Transformarfreezer.png') }}">
+
+    <a href="/torneo">
+
+        <img class="cambiar" src="{{ url_for('static', filename='img/cambiar.png') }}">
+
+    </a>
+
+    <script>
+
+        let imagesSet1 = [];
+
+        let imagesSet2 = [];
+
+        let index1 = 0;
+
+        let index2 = 0;
+
+        async function fetchImages1() {
+
+            const response = await fetch('/api/image-set1');
+
+            imagesSet1 = await response.json();
+
+        }
+
+        async function fetchImages2() {
+
+            const response = await fetch('/api/image-set2');
+
+            imagesSet2 = await response.json();
+
+        }
+
+        function changeImage1() {
+
+            if (imagesSet1.length === 0) return;
+
+            index1 = (index1 + 1) % imagesSet1.length;
+
+            const image1 = document.getElementById('image1');
+
+            image1.src = imagesSet1[index1];
+
+        }
+
+        function changeImage2() {
+
+            if (imagesSet2.length === 0) return;
+
+            index2 = (index2 + 1) % imagesSet2.length;
+
+            const image2 = document.getElementById('image2');
+
+            image2.src = imagesSet2[index2];
+
+        }
+
+
+        window.onload = async () => {
+
+            await fetchImages1();
+
+            await fetchImages2();
+            
+        };
+
+    </script>
+
+</body>
+
+</html>
