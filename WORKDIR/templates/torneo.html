@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Torneo de Cell</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style2.css') }}">
+
+</head>
+
+<body>
+
+    <img class="titulo" src="{{ url_for('static', filename='img/titulo2.png') }}">
+
+    <img class="gohan" id="image3" src="/static/img111.png" alt="Imagen inicial3">
+
+    <img class="cell" id="image4" src="/static/img1111.png" alt="Imagen inicial4">
+    
+    <img onclick="changeImage3()" class="botonGohan" src="{{ url_for('static', filename='img/Transformargoku.png') }}">
+
+    <img onclick="changeImage4()" class="botonCell" src="{{ url_for('static', filename='img/Transformarcell.png') }}">
+
+    <a href="/torneo2">
+
+        <img class="cambiar" src="{{ url_for('static', filename='img/cambiar.png') }}">
+
+    </a>
+
+    <script>
+
+        let imagesSet3 = [];
+
+        let imagesSet4 = [];
+
+        let index3 = 0;
+
+        let index4 = 0;
+
+        async function fetchImages3() {
+
+            const response = await fetch('/api/image-set3');
+
+            imagesSet3 = await response.json();
+
+        }
+
+        async function fetchImages4() {
+
+            const response = await fetch('/api/image-set4');
+
+            imagesSet4 = await response.json();
+
+        }
+
+        function changeImage3() {
+
+            if (imagesSet3.length === 0) return;
+
+            index3 = (index3 + 1) % imagesSet3.length;
+
+            const image3 = document.getElementById('image3');
+
+            image3.src = imagesSet3[index3];
+
+        }
+
+        function changeImage4() {
+
+            if (imagesSet4.length === 0) return;
+
+            index4 = (index4 + 1) % imagesSet4.length;
+
+            const image4 = document.getElementById('image4');
+
+            image4.src = imagesSet4[index4];
+
+        }
+
+
+        window.onload = async () => {
+
+            await fetchImages3();
+
+            await fetchImages4();
+            
+        };
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,64 @@
+body {
+
+    background-image: url("../img/namekusei.jpg");
+    background-size: cover;
+
+}
+
+.titulo {
+
+    position: relative;
+    left: 200px;
+
+}
+
+.botonGoku {
+
+    width: 200px;
+    height: 53px;
+    position: absolute;
+    top: 600px;
+    left: 400px;
+
+}
+
+.botonFreezer {
+
+    width: 200px;
+    height: 53px;
+    position: absolute;
+    top: 600px;
+    left: 850px;
+    
+}
+
+.cambiar {
+
+    width: 120px;
+    height: 56px;
+
+}
+
+a {
+
+    position: absolute;
+    left: 1330px;
+    top: 20px;
+
+}
+
+.goku {
+
+    position: absolute;
+    top: 180px;
+    left: 425px;
+
+}
+
+.freezer {
+
+    position: absolute;
+    top: 190px;
+    left: 840px;
+
+}
